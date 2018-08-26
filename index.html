@@ -10,42 +10,52 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
+            <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <div>
             <h1>Viking Battle</h1>
         </div>
 
         <div id="charRow" class="row">
-            <div id="thorvaldBox" class="col-md-2 char border">
+            <div id="thorvaldBox" class="col-md-1 char border charChoice m-1">
                 <p>Thorvald</p>
-                <img src="assets/images/thorvald.jpg" class="m-2" alt="Thorvald the Viking" height=100, width=75>
-                <p>Health: 150</p>
+                <img src="assets/images/thorvald.jpg" class="m-1" alt="Thorvald the Viking" height=80, width=55>
+                <p class="health">Health: 150</p>
             </div>
 
-            <div id="eirikBox" class="col-md-2 char border">
+            <div id="eirikBox" class="col-md-1 char border charChoice m-1">
                 <p>Eirik</p>
-                <img src="assets/images/eirik.png" class="m-2" alt="Eirik the Viking" height=100, width=75>
-                <p>Health: 120</p>
+                <img src="assets/images/eirik.png" id="eirikButton" class="m-1" alt="Eirik the Viking" height=80, width=55>
+                <p class="health">Health: 120</p>
             </div>
 
-            <div id="ulfBox" class="col-md-2 char border">
+            <div id="ulfBox" class="col-md-1 char border charChoice m-1">
                 <p>Ulf</p>
-                <img src="assets/images/ulf.jpg" class="m-2" alt="Ulf the Viking" height=100, width=75>
-                <p>Health: 180</p>
+                <img src="assets/images/ulf.jpg" id="ulfButton" class="m-1" alt="Ulf the Viking" height=80, width=55>
+                <p class="health">Health: 180</p>
             </div>
             
-            <div id="magnusBox" class="col-md-2 char border">
+            <div id="magnusBox" class="col-md-1 char border charChoice m-1">
                 <p>Magnus</p>
-                <img src="assets/images/magnus.jpg" class="m-2" alt="Magnus the Viking" height=100, width=75>
-                <p>Health: 120</p>
+                <img src="assets/images/magnus.jpg" id="magnusButton" class="m-1" alt="Magnus the Viking" height=80, width=55>
+                <p class="health">Health: 120</p>
             </div>
-
+            <div id="battle" class="col-md-7 border"></div>
             
                        
         </div>
 
-        <div id="enemyRow"></div>
+     
 
-        <div id="battle"></div>
+        <div id="enemyRow">
+            <div class="row">
+                <div class="col-md-2 border char" id="eRow1"></div>
+                <div class="col-md-2 border char" id="eRow2"></div>
+                <div class="col-md-2 border char" id="eRow3"></div>
+            </div>
+        </div>
+            
+
+        <div id="battle" class="border"></div>
 
         <div>
             <button type="button" id="attackButton">Attack</button>

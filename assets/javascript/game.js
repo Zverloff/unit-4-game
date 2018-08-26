@@ -13,6 +13,7 @@ var thorvald = {
     name: "Thorvald",
     health: 150,
     attack: 8,
+    bonus: 8,
     counter: 12,
     picture: "assets/images/thorvald.jpg"
 
@@ -21,22 +22,25 @@ var eirik = {
     name: "Eirik",
     health: 120,
     attack: 10,
+    bonus: 10,
     counter: 15,
     picture: "assets/images/eirik.png"
 
 } 
 var ulf = {
-    Name: "Ulf",
+    name: "Ulf",
     health: 180,
     attack: 8,
+    bonus: 8,
     counter: 5,
     picture: "assets/images/ulf.jpg"
 
 } 
 var magnus = {
-    Name: "Magnus",
+    name: "Magnus",
     health: 100,
     attack: 12,
+    bonus: 12,
     counter: 20,
     picture: "assets/images/magnus.jpg"
 
@@ -44,62 +48,149 @@ var magnus = {
 
 var attack = document.getElementById("attackButton");
 var restart = document.getElementById("restartButton");
+var character = {};
+var enemy = {};
+
+attackerSelect = false
+enemySelect = false
+character = {};
+enemy = {};
+gameOver = false;
+
+function selectCharacter(chosenCharacter) {
+    character.name = chosenCharacter.name;
+    character.health = chosenCharacter.health;
+    character.attack = chosenCharacter.attack;
+    character.counter = chosenCharacter.counter;
+}
+
+function selectEnemy(chosenEnemy) {
+    enemy.name = chosenEnemy.name;
+    enemy.health = chosenEnemy.health;
+    enemy.attack = chosenEnemy.attack;
+    enemy.counter = chosenEnemy.counter;
+}
+
+function moveEnemy() {
+    $(".charChoice").removeClass("charChoice").addClass("charEnemy")
+    $("#enemyRow").append($(".charEnemy"))
+}
 
 $("#restartButton").hide();
 $("#enemyRow").hide();
-$("#battle").hide();
+$("#attackButton").prop('disabled', true);
 
-$(document).ready(function(){
+$("#thorvaldBox").click(function() {
+    $("#enemyRow").show();
+    $("#attackButton").prop('disabled', false);
+    if (attackerSelect === false) {
+        selectCharacter(thorvald);
+        attackerSelect = true;
+        $("#thorvaldBox").removeClass("charChoice").addClass("chosenCharacter");
+        $("#battle").append($("#thorvaldBox"));
+        moveEnemy();
+    } else if ((attackerSelect === true) && (enemySelect === false)) {
+        selectEnemy(thorvald);
+        enemySelect = true;
+        $("#thorvaldBox").removeClass("charEnemy").addClass("chosenEnemy");
+        $("#battle").append($("#thorvaldBox"));
+    }
 
+})
+$("#eirikBox").click(function() {    
+    $("#enemyRow").show();
+    $("#attackButton").prop('disabled', false);
+    if (attackerSelect === false) {
+        selectCharacter(eirik);
+        attackerSelect = true;
+        $("#eirikBox").removeClass("charChoice").addClass("chosenCharacter");
+        $("#battle").append($("#eirikBox"));
+        moveEnemy();
+    } else if ((attackerSelect === true) && (enemySelect === false)) {
+        selectEnemy(eirik);
+        enemySelect = true;
+        $("#eirikBox").removeClass("charEnemy").addClass("chosenEnemy");
+        $("#battle").append($("#eirikBox"));
+    }
 
-    
+})
+$("#ulfBox").click(function() {    
+    $("#enemyRow").show();
+    $("#attackButton").prop('disabled', false);
+    if (attackerSelect === false) {
+        selectCharacter(ulf);
+        attackerSelect = true;
+        $("#ulfBox").removeClass("charChoice").addClass("chosenCharacter");
+        $("#battle").append($("#ulfBox"));
+        moveEnemy();
+    } else if ((attackerSelect === true) && (enemySelect === false)) {
+        selectEnemy(ulf);
+        enemySelect = true;
+        $("#ulfBox").removeClass("charEnemy").addClass("chosenEnemy");
+        $("#battle").append($("#ulfBox"));
+    }
+
+})
+$("#magnusBox").click(function() {    
+    $("#enemyRow").show();
+    $("#attackButton").prop('disabled', false);
+    if (attackerSelect === false) {
+        selectCharacter(magnus);
+        attackerSelect = true;
+        $("#magnusBox").removeClass("charChoice").addClass("chosenCharacter");
+        $("#battle").append($("#magnusBox"));
+        moveEnemy();
+    } else if ((attackerSelect === true) && (enemySelect === false)) {
+        selectEnemy(magnus);
+        enemySelect = true;
+        $("#magnusBox").removeClass("charEnemy").addClass("chosenEnemy");
+        $("#battle").append($("#magnusBox"));
+    }
+
 })
 
-// Questions - 1. Do I need to dynamically create my characters or can I create in html and move them in jquery?
-// 2. If I do create them, how to I style the way they show up?
-// 3. How do I make it fill with the info of my object? 
-// 4. How do I make my characters clickable?
-
-
-// Character selection
-
-//click on character
-
-
-//character movies to battle area
-$("#battle").show();
-$(character).appendTo("#battle");
-
-//enemies move to other enemy area and backgorund turns red
-$(enemies).clone().appendTo("#enemyRow");
-$("#enemyRow").hide();
-//change enemies class to something so only thier backgorund color changes?
-$(".char").css("background-color", "red");
-
-//Click attack button to resolve combat
-$("#attackButton").click(function(){
-// enemy health - hero attack;
-
-// hero health - enemy counter attack
-
-//update text window
-$("#textBox").html("You attacked " + defenderAtt + "for " + attackerAtt + "points of damage.")
-//I want the box to continue on through the fight, keeping record
-//create variables for attacked and defender health. Write results of comabt to them each time button is clicked
-//attack increases
-
-if (attackerHP === 0) {
-    //display you lose in texta area in bold
-    $("#restartButton").show();
-}
-else (enemyHP === 0) {
-    $("#textBox").html("You win! Now select your next opponent.");
-    //  display you win in text area in bold
-    // offer up new characters to fight next
+$(attack).click(function() {
+    if (attackerSelect && enemySelect && !gameOver) {
+        enemy.health = enemy.health - character.attack;
+        $(".chosenEnemy").find(".health").html("Health: " + enemy.health);
+        $("#textBox").html("<p>You attacked " + enemy.name + " for " + character.attack + " damage.</p>")
+        character.attack = character.attack + character.bonus;
     
-};
+        if (enemy.health > 0) {
+            character.health = character.health - enemy.attack;
+            $(".chosenCharacter").find(".health").html("Health: " + character.health);
+        }
+        if (character.health > 0) {
+            $("#textBox").html("<p>You were attacked by " + enemy.name + " for " + enemy.attack + " damage.</p>")
+        } else {
+            gameOver = true;
+            $("#textBox").html("<p>You have been defeated. On to Valhalla!</p>");
+            $("#restartButton").show();
+        }}
+            
+    else {
+        enemySelect = false
+        victory++
+        $("#textBox").html("<p>You have defeated " + enemy.name + ". Choose another oppponent.</p>")
 
-});
+        if (victory === 3) {
+            gameOver = true;
+            $("#textBox").html("<p>You have sent all of your enemies to Valhalla! Time for mead!</p>");
+            $("#restartButton").show();
+        }
+    }
+
+    if (!attackerSelect && !gameOver) {
+        $("#textBox").html("<p>Please select a viking to attack with.</p>");
+    }
+
+    if (!enemySelect && !gameOver) {
+        $("#textBox").html("<p>Please select an opponent.</p>")
+
+    }
+})
+
+
 
 
 
