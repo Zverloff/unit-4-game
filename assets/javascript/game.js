@@ -73,78 +73,89 @@ function selectEnemy(chosenEnemy) {
 
 function moveEnemy() {
     $(".charChoice").removeClass("charChoice").addClass("charEnemy")
-    $("#enemyRow").append($(".charEnemy"))
+    //$("#enemyRow").append($(".charEnemy"))
 }
 
 $("#restartButton").hide();
-$("#enemyRow").hide();
+//$("#enemyRow").hide();
 $("#attackButton").prop('disabled', true);
 
-$("#thorvaldBox").click(function() {
-    $("#enemyRow").show();
+$("#thorvaldBox").click(function() {   
     $("#attackButton").prop('disabled', false);
     if (attackerSelect === false) {
         selectCharacter(thorvald);
         attackerSelect = true;
         $("#thorvaldBox").removeClass("charChoice").addClass("chosenCharacter");
-        $("#battle").append($("#thorvaldBox"));
+        $("#battleCharacter").append($("#thorvaldBox").clone(true));
+        $("#thorvaldBox").css("visibility", "hidden");
         moveEnemy();
     } else if ((attackerSelect === true) && (enemySelect === false)) {
         selectEnemy(thorvald);
         enemySelect = true;
         $("#thorvaldBox").removeClass("charEnemy").addClass("chosenEnemy");
-        $("#battle").append($("#thorvaldBox"));
+        $("#battleEnemy").append($("#thorvaldBox").clone(true));
+        $("#thorvaldBox").css("visibility", "hidden");
+
     }
 
 })
 $("#eirikBox").click(function() {    
-    $("#enemyRow").show();
     $("#attackButton").prop('disabled', false);
     if (attackerSelect === false) {
         selectCharacter(eirik);
         attackerSelect = true;
         $("#eirikBox").removeClass("charChoice").addClass("chosenCharacter");
-        $("#battle").append($("#eirikBox"));
+        $("#battleCharacter").append($("#eirikBox").clone(true));
+        $("#eirikBox").css("visibility", "hidden");
+
         moveEnemy();
     } else if ((attackerSelect === true) && (enemySelect === false)) {
         selectEnemy(eirik);
         enemySelect = true;
         $("#eirikBox").removeClass("charEnemy").addClass("chosenEnemy");
-        $("#battle").append($("#eirikBox"));
+        $("#battleEnemy").append($("#eirikBox").clone(true));
+        $("#eirikBox").css("visibility", "hidden");
+
     }
 
 })
 $("#ulfBox").click(function() {    
-    $("#enemyRow").show();
     $("#attackButton").prop('disabled', false);
     if (attackerSelect === false) {
         selectCharacter(ulf);
         attackerSelect = true;
         $("#ulfBox").removeClass("charChoice").addClass("chosenCharacter");
-        $("#battle").append($("#ulfBox"));
+        $("#battleCharacter").append($("#ulfBox").clone(true));
+        $("#ulfBox").css("visibility", "hidden");
+
         moveEnemy();
     } else if ((attackerSelect === true) && (enemySelect === false)) {
         selectEnemy(ulf);
         enemySelect = true;
         $("#ulfBox").removeClass("charEnemy").addClass("chosenEnemy");
-        $("#battle").append($("#ulfBox"));
+        $("#battleEnemy").append($("#ulfBox").clone(true));
+        $("#ulfBox").css("visibility", "hidden");
+
     }
 
 })
 $("#magnusBox").click(function() {    
-    $("#enemyRow").show();
     $("#attackButton").prop('disabled', false);
     if (attackerSelect === false) {
         selectCharacter(magnus);
         attackerSelect = true;
         $("#magnusBox").removeClass("charChoice").addClass("chosenCharacter");
-        $("#battle").append($("#magnusBox"));
+        $("#battleCharacter").append($("#magnusBox").clone(true));
+        $("#magnusBox").css("visibility", "hidden");
+
         moveEnemy();
     } else if ((attackerSelect === true) && (enemySelect === false)) {
         selectEnemy(magnus);
         enemySelect = true;
         $("#magnusBox").removeClass("charEnemy").addClass("chosenEnemy");
-        $("#battle").append($("#magnusBox"));
+        $("#battleEnemy").append($("#magnusBox").clone(true));
+        $("#magnusBox").css("visibility", "hidden");
+
     }
 
 })

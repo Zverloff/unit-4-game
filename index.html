@@ -9,10 +9,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
-    <body>
+    <body background="assets/images/battlefield.jpg">
             <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <div>
-            <h1>Viking Battle</h1>
+            <h1 class="banner">Viking Battle</h1>
         </div>
 
         <div id="charRow" class="row">
@@ -39,32 +39,25 @@
                 <img src="assets/images/magnus.jpg" id="magnusButton" class="m-1" alt="Magnus the Viking" height=80, width=55>
                 <p class="health">Health: 120</p>
             </div>
-            <div id="battle" class="col-md-7 border"></div>
+            <div class="col-md-1"></div>
+            <div id="battleCharacter" class="col-md-2 border"></div>
+            <div class="col-md-1 "><p class="vs">VS.</p></div>
+            <div id="battleEnemy" class="col-md-2 border"></div>
             
                        
-        </div>
-
-     
-
-        <div id="enemyRow">
-            <div class="row">
-                <div class="col-md-2 border char" id="eRow1"></div>
-                <div class="col-md-2 border char" id="eRow2"></div>
-                <div class="col-md-2 border char" id="eRow3"></div>
+        </div>    
+        <div class="row mt-1">
+            <div class="col-md-7"></div>
+            <div class="col-md-5 pl-3">
+                <button type="button" id="attackButton">Attack</button>
+                <button type="button" id="restartButton">Restart Game</button>
             </div>
         </div>
-            
 
-        <div id="battle" class="border"></div>
-
-        <div>
-            <button type="button" id="attackButton">Attack</button>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6" id="textBox">Choose Your Fighter</div>
         </div>
-
-        <div>
-            <button type="button" id="restartButton">Restart Game</button>
-        </div>
-
         <div id="textBox"></div>
         
     </body>
