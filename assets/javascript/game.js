@@ -53,8 +53,8 @@ var enemy = {};
 
 attackerSelect = false
 enemySelect = false
-character = {};
-enemy = {};
+// character = {};
+// enemy = {};
 gameOver = false;
 
 function selectCharacter(chosenCharacter) {
@@ -62,6 +62,7 @@ function selectCharacter(chosenCharacter) {
     character.health = chosenCharacter.health;
     character.attack = chosenCharacter.attack;
     character.counter = chosenCharacter.counter;
+    character.bonus = chosenCharacter.counter;
 }
 
 function selectEnemy(chosenEnemy) {
@@ -162,26 +163,39 @@ $("#magnusBox").click(function() {
 
 $(attack).click(function() {
     if (attackerSelect && enemySelect && !gameOver) {
-        enemy.health = enemy.health - character.attack;
+        console.log(enemy.health)
+        enemy.health -= character.attack;
+        console.log("after damage " + enemy.health)
         $(".chosenEnemy").find(".health").html("Health: " + enemy.health);
         $("#textBox").html("<p>You attacked " + enemy.name + " for " + character.attack + " damage.</p>")
-        character.attack = character.attack + character.bonus;
+        
+       // character.attack = character.attack + character.bonus;
+
     
         if (enemy.health > 0) {
             character.health = character.health - enemy.attack;
             $(".chosenCharacter").find(".health").html("Health: " + character.health);
+            console.log("first if" + enemy.health)
+
         }
         if (character.health > 0) {
             $("#textBox").html("<p>You were attacked by " + enemy.name + " for " + enemy.attack + " damage.</p>")
+            console.log("last if" + enemy.health)
+
         } else {
             gameOver = true;
             $("#textBox").html("<p>You have been defeated. On to Valhalla!</p>");
             $("#restartButton").show();
-        }}
+            console.log("else" + enemy.health)
+
+        }
+    }
             
     else {
         enemySelect = false
         victory++
+        console.log(enemy.health)
+
         $("#textBox").html("<p>You have defeated " + enemy.name + ". Choose another oppponent.</p>")
 
         if (victory === 3) {

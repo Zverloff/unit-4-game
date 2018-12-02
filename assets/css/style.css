@@ -15,7 +15,9 @@
 }
 
 #textBox {
+    border: solid;
+    border-color: black;
+    margin: 10px;
     background-color: white;
-    
-   
+    height: 200px;
 }
